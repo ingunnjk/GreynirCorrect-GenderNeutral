@@ -1,11 +1,10 @@
-GreynirCorrect og kynhlutlaust mál
-===================================
+# GreynirCorrect og kynhlutlaust mál
+
 
 Viðbót við GreynirCorrect fyrir kynhlutlaust mál.
 
-************
-Installation
-************
+## Installation
+
 
 To install this package (assuming you have Python >= 3.7 with ``pip`` installed):
 
@@ -27,9 +26,9 @@ The package source code is now in ``GreynirCorrect/src/reynir_correct``.
 
 
 
-*********************
-License
-*********************
+
+## License
+
 
 This software is licensed under the *MIT License*:
 
