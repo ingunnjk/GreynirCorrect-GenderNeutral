@@ -1,11 +1,7 @@
-# GreynirCorrect-GenderInclusive
-Viðbót við GreynirCorrect fyrir kynhlutlaust mál.
-
-===================================
 GreynirCorrect og kynhlutlaust mál
 ===================================
 
-Kynna viðbótina.
+Viðbót við GreynirCorrect fyrir kynhlutlaust mál.
 
 ************
 Installation
