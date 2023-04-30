@@ -1,0 +1,8 @@
+reynir>=3.5.3
+icegrams>=1.1.2
+typing_extensions
+
+[sentence_classifier]
+transformers
+datasets
+torch

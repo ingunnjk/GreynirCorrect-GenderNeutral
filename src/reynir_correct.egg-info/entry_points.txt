@@ -1,0 +1,3 @@
+[console_scripts]
+correct = reynir_correct.main:main
+
