@@ -13,15 +13,21 @@ Umræðan um kynhlutlaust mál hefur þróast mikið á undanförnum árum og te
 - [Python](https://www.python.org/) >= 3.7 ásamt 'pip'
 - [Git](https://github.com/git-guides/install-git)
 
+Sjá frekari upplýsingar [hér](https://yfirlestur.is/doc/installation.html).
+
 ### Uppsetning
 
 Til að nota GreynirCorrect með viðbótinni fyrir kynhlutlaust mál er hægt að fylgja eftirfarandi skrefum:
 
+Sækja GreynirCorrect
 ```bash
 git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
 cd GreynirCorrect-GenderNeutral
 # [ Virkja virtualenv hér ef það á við ]
 pip install -e .
+```
+Sækja Yfirlestur
+```bash
 cd ..
 git clone https://github.com/mideind/Yfirlestur
 cd Yfirlestur
