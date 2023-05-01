@@ -19,7 +19,7 @@ Til að nota GreynirCorrect með viðbótinni fyrir kynhlutlaust mál er hægt a
 
 ```bash
 git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
-cd GreynirCorrect
+cd GreynirCorrect-GenderNeutral
 # [ Virkja virtualenv hér ef það á við ]
 pip install -e .
 ```
