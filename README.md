@@ -4,6 +4,8 @@
 
 Á þessari síðu er að finna viðbót við GreynirCorrect fyrir kynhlutlaust mál. Á undanförnum árum hefur ákallið eftir kynhlutlausu máli orðið sífellt háværara en hlutleysishlutverk karlkynsins í íslensku þykir mörgum karllæg og útilokandi málnotkun. Í kynhlutlausu máli í íslensku felst m.a. að notað sé hvorugkyn í stað karlkyns þar sem tíðkast hefur að nota karlkyn til að vísa til fólks óháð kyni.
 
+Umræðan um kynhlutlaust mál hefur þróast mikið á undanförnum árum og tekur enn hröðum breytingum. Þær leiðréttingar sem þessi viðbót GreynirCorrect gerir eru aðeins tillögur og eftir því sem umræðan um kynhlutlaust mál þróast enn frekar verður hægt að gera viðeigandi breytingar og uppfærslur á viðbótinni. 
+
 ## Installation
 
 
