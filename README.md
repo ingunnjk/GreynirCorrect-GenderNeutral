@@ -35,8 +35,8 @@ python main.py
 ```
 og að lokum opna slóðina http://localhost:5002/.
 
-![Example_image](GreynirCorrect-GenderNeutral.png)
-
+<img src="GreynirCorrect-GenderNeutral.png" width="720" height="536"
+  alt="Example_image" style="margin-top: 18px; margin-bottom: 6px">
 
 ## Leyfi
 
