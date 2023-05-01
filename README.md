@@ -17,10 +17,12 @@ Umræðan um kynhlutlaust mál hefur þróast mikið á undanförnum árum og te
 
 Til að nota GreynirCorrect með viðbóðinni fyrir kynhlutlaust mál er hægt að fylgja eftirfarandi skrefum:
 
-   $ git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
-   $ cd GreynirCorrect
-   $ # [ Activate your virtualenv here if you have one ]
-   $ pip install -e .
+```bash
+git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
+cd GreynirCorrect
+# [ Activate your virtualenv here if you have one ]
+pip install -e .
+```
 
 Yfirlestur..
 
