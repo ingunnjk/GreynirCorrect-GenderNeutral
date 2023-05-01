@@ -1,7 +1,8 @@
 # GreynirCorrect og kynhlutlaust mál
 
+[GreynirCorrect](http://hdl.handle.net/20.500.12537/270) er Python pakki og skipanalínutól frá máltæknifyrirtækinu [Miðeind](https://mideind.is/) sem notað er til að yfirfara íslenska texta. Það byggist á málgreininum [Greyni](http://hdl.handle.net/20.500.12537/269) og getur leiðrétt ýmsar tegundir stafsetningar- og málfræðivillna. 
 
-Viðbót við GreynirCorrect fyrir kynhlutlaust mál.
+Búin hefur verið til viðbót við GreynirCorrect fyrir kynhlutlaust mál. Á undanförnum árum hefur ákallið eftir kynhlutlausu máli orðið sífellt háværara en hlutleysishlutverk karlkynsins í íslensku þykir mörgum karllæg og útilokandi málnotkun. Í kynhlutlausu máli í íslensku felst m.a. að notað sé hvorugkyn í stað karlkyns þar sem tíðkast hefur að nota karlkyn til að vísa til fólks óháð kyni.
 
 ## Installation
 
