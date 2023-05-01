@@ -28,9 +28,9 @@ pip install -e .
 ```
 Sækja Yfirlestur
 ```bash
-cd ..
 git clone https://github.com/mideind/Yfirlestur
 cd Yfirlestur
+pip install -r requirements.txt
 python main.py
 ```
 og að lokum opna slóðina http://localhost:5002/.
