@@ -17,7 +17,7 @@ Sjá frekari upplýsingar [hér](https://yfirlestur.is/doc/installation.html).
 
 ### Uppsetning
 
-Til að nota GreynirCorrect með viðbótinni fyrir kynhlutlaust mál (í [Yfirlestur.is](yfirlestur.is) umhverfinu) er hægt að fylgja eftirfarandi skrefum:
+Til að nota GreynirCorrect með viðbótinni fyrir kynhlutlaust mál (í [Yfirlestur.is](https://yfirlestur.is/) umhverfinu) er hægt að fylgja eftirfarandi skrefum:
 
 Sækja GreynirCorrect
 ```bash
