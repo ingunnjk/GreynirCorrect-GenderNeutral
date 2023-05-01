@@ -15,22 +15,24 @@ Umræðan um kynhlutlaust mál hefur þróast mikið á undanförnum árum og te
 
 ### Uppsetning
 
-Til að nota GreynirCorrect með viðbóðinni fyrir kynhlutlaust mál er hægt að fylgja eftirfarandi skrefum:
+Til að nota GreynirCorrect með viðbótinni fyrir kynhlutlaust mál er hægt að fylgja eftirfarandi skrefum:
 
 ```bash
 git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
 cd GreynirCorrect
-# [ Activate your virtualenv here if you have one ]
+# [ Virkja [virtualenv](https://virtualenv.pypa.io/en/stable/) hér ef það á við ]
 pip install -e .
 ```
 
-Yfirlestur..
+Til að keyra viðbótina í Yfirlestur.is umhverfinu:
 
-
-
+```bash
+git clone https://github.com/mideind/Yfirlestur
+python main.py
+```
+og að lokum opna slóðina http://localhost:5002/.
 
 ## License
-
 
 This software is licensed under the *MIT License*:
 
