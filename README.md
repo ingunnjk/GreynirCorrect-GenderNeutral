@@ -22,11 +22,7 @@ git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
 cd GreynirCorrect-GenderNeutral
 # [ Virkja virtualenv hér ef það á við ]
 pip install -e .
-```
-
-Til að keyra viðbótina í Yfirlestur.is umhverfinu:
-
-```bash
+cd ..
 git clone https://github.com/mideind/Yfirlestur
 cd Yfirlestur
 python main.py
