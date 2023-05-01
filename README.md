@@ -20,7 +20,7 @@ Til að nota GreynirCorrect með viðbótinni fyrir kynhlutlaust mál er hægt a
 ```bash
 git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
 cd GreynirCorrect
-# [ Virkja [virtualenv](https://virtualenv.pypa.io/en/stable/) hér ef það á við ]
+# [ Virkja virtualenv hér ef það á við ]
 pip install -e .
 ```
 
@@ -28,6 +28,7 @@ Til að keyra viðbótina í Yfirlestur.is umhverfinu:
 
 ```bash
 git clone https://github.com/mideind/Yfirlestur
+cd Yfirlestur
 python main.py
 ```
 og að lokum opna slóðina http://localhost:5002/.
