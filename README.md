@@ -6,26 +6,23 @@
 
 Umræðan um kynhlutlaust mál hefur þróast mikið á undanförnum árum og tekur enn hröðum breytingum. Þær leiðréttingar sem þessi viðbót GreynirCorrect gerir eru aðeins tillögur og eftir því sem umræðan um kynhlutlaust mál þróast enn frekar verður hægt að gera viðeigandi breytingar og uppfærslur á viðbótinni. 
 
-## Installation
+## Notkun
 
+### Forkröfur
 
-To install this package (assuming you have Python >= 3.7 with ``pip`` installed):
+- [Python](https://www.python.org/) >= 3.7 ásamt 'pip'
+- [Git](https://github.com/git-guides/install-git)
 
-.. code-block:: bash
+### Uppsetning
 
-   $ pip install reynir-correct
+Til að nota GreynirCorrect með viðbóðinni fyrir kynhlutlaust mál er hægt að fylgja eftirfarandi skrefum:
 
-If you want to be able to edit the source, do like so
-(assuming you have ``git`` installed):
-
-.. code-block:: bash
-
-   $ git clone https://github.com/mideind/GreynirCorrect
+   $ git clone https://github.com/ingunnjk/GreynirCorrect-GenderNeutral
    $ cd GreynirCorrect
    $ # [ Activate your virtualenv here if you have one ]
    $ pip install -e .
 
-The package source code is now in ``GreynirCorrect/src/reynir_correct``.
+Yfirlestur..
 
 
 
