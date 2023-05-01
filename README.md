@@ -35,6 +35,9 @@ python main.py
 ```
 og að lokum opna slóðina http://localhost:5002/.
 
+![Example_image](GreynirCorrect-GenderNeutral.png)
+
+
 ## Leyfi
 
 Greynir er opinn og frjáls hugbúnaður sem nýta má undir *MIT leyfi*:
