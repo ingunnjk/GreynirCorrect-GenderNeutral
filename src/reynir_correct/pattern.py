@@ -144,7 +144,7 @@ class IcelandicPlaces:
         assert cls.ICELOC_PREP is not None
         return place in cls.ICELOC_PREP
 
-# KYNHLUTLAUST MÁL
+# Gender neutral
 class JobTitles:
     JOBTITLES_PREP: Optional[Dict[str, str]] = None
     JOBTITLES_PREP_JSONPATH = os.path.join(
@@ -159,8 +159,7 @@ class JobTitles:
 
     @classmethod
     def lookup_jobtitle(cls, title: str) -> Optional[str]:
-        """Look up the correct preposition to use with a placename,
-        or None if the placename is not known"""
+        """Look up the correct jobtitle"""
         if cls.JOBTITLES_PREP is None:
             cls._load_json()
         assert cls.JOBTITLES_PREP is not None
@@ -173,13 +172,11 @@ class JobTitles:
         if cls.JOBTITLES_PREP is None:
             cls._load_json()
         assert cls.JOBTITLES_PREP is not None
-
         return set(cls.JOBTITLES_PREP.keys())
 
-    
     @classmethod
     def includes(cls, title: str) -> bool:
-        """Return True if the given place is found in the dictionary"""
+        """Return True if the given jobtitle is found in the dictionary"""
         if cls.JOBTITLES_PREP is None:
             cls._load_json()
         assert cls.JOBTITLES_PREP is not None
@@ -1886,10 +1883,8 @@ class PatternMatcher:
             )
         )
 
-    # KYNHLUTLAUST MÁL
-    def wrong_demonstrative_pronoun(self, match: SimpleTree) -> None:
-        """Demonstrative pronoun (plural) is masculine"""
-        # Check if demonstrative pronoun is masculine
+    # Gender neutral
+    def wrong_gender_demonstrative_pronoun(self, match: SimpleTree) -> None:
         fn = match.first_match("(fn_nf_kk | fn_þf_kk)")
         if fn is None:
             return
@@ -1902,8 +1897,11 @@ class PatternMatcher:
             fn_text = fn.text.lower()
             suggest = self.get_wordform(fn_text, fn.lemma, fn.cat, variants)
         else:
-            suggest = "sá/sú/hán"
-        start, end = match.span
+            if "nf" in fn.all_variants:
+                suggest = "sá/sú/hán"
+            elif "þf" in fn.all_variants:
+                suggest = "þann/þá/hán"
+        start, end = fn.span
         text = f"Til að gera setninguna kynhlutlausa væri betra að hafa '{suggest}' í stað '{fn.tidy_text.lower()}'"
         detail = (f"Hvorugkynsfornafnið '{suggest}' er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynsfornafnið '{fn.tidy_text.lower()}' getur verið notað til að vísa einungis til karlmanna.")
         if suggest == fn.tidy_text.lower():
@@ -1913,81 +1911,19 @@ class PatternMatcher:
             Annotation(
                 start=start,
                 end=end,
-                code="P_WRONG_DEMONSTRATIVE_PRONOUN",
+                code="P_WRONG_GENDER_DEMONSTRATIVE_PRONOUN",
                 text=text,
                 detail=detail,
                 original=fn.tidy_text,
-                suggest=suggest,
-            )
-        )
-    """
-    def wrong_demonstrative_pronoun_singular(self, match: SimpleTree) -> None:
-        # Check if demonstrative pronoun is masculine
-        fn = match.first_match("(fn_et_nf_kk | fn_et_þf_kk)")
-        if fn is None:
-            return
-        fn_lemma = fn.lemma
-        if fn_lemma not in {"sá"}:
-            return
-        variants = set(fn.all_variants) - {"kk"}
-        variants.add("hk")
-        #fn_text = fn.text.lower()
-        suggest = "sá/sú/hán"
-        start, end = match.span
-        text = f"Til að gera setninguna kynhlutlausa væri betra að hafa '{suggest}' í stað '{fn.tidy_text.lower()}'"
-        detail = (f"Hvorugkynsfornafnið '{suggest}' er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynsfornafnið '{fn.tidy_text.lower()}' getur verið notað til að vísa einungis til karlmanna.")
-        if suggest == fn.tidy_text:
-            # No need to annotate, no changes were made
-            return
-        self._ann.append(
-            Annotation(
-                start=start,
-                end=end,
-                code="P_WRONG_DEMONSTRATIVE_PRONOUN",
-                text=text,
-                detail=detail,
-                original=fn.tidy_text,
-                suggest=suggest,
-            )
-        )
-    """
-    def noun_madur(self, match: SimpleTree) -> None:
-        """Breytum nafnorðinu maður í manneskja eða fólk"""
-        no = match.first_match("no")
-        if no is None:
-            return
-        no_lemma = no.lemma
-        if no_lemma not in {"maður"}:
-            return
-        start, end = match.span
-        if "et" in no.all_variants:
-            suggest = "manneskja"
-            old_noun = "maður"
-        else:
-            suggest = "fólk"
-            old_noun = "menn"
-        text = f"Hér gæti verið betra að rita t.d. '{suggest}' í staðinn fyrir '{old_noun}' til að gera setninguna kynhlutlausa."
-        detail = (f"Hvorugkynsnafnorðið '{suggest}' er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynsfornafnið '{old_noun}' getur verið notað til að vísa einungis til karlmanna.")
-        if suggest == no.tidy_text.lower():
-            # No need to annotate, no changes were made
-            return
-        self._ann.append(
-            Annotation(
-                start=start,
-                end=end,
-                code="P_NOUN_MADUR",
-                text=text,
-                detail=detail,
-                original=no.tidy_text,
                 suggest=suggest,
             )
         )
 
+    # Gender neutral
     def check_jobtitle(self, match: SimpleTree) -> None:
         title = match.first_match("no")
         title_lemma = title.lemma
         suggest = JobTitles.lookup_jobtitle(title_lemma)
-        #suggest = "fiskari"
         if suggest is None:
             return
         if suggest == title:
@@ -2003,7 +1939,7 @@ class PatternMatcher:
             Annotation(
                 start=start,
                 end=end,
-                code="P_WRONG_JOBTITLE",
+                code="P_CHECK_JOBTITLE",
                 text=text,
                 detail=detail,
                 original=match.tidy_text,
@@ -2011,9 +1947,12 @@ class PatternMatcher:
             )
         )
 
-    def fornofn(self, match: SimpleTree) -> None:
+    # Gender neutral
+    def pronoun_wrong_gender(self, match: SimpleTree) -> None:
         fn = match.first_match("fn")
         if fn is None:
+            return
+        if "hk" in fn.all_variants:
             return
         if "et" in fn.all_variants:
             variants = set(fn.all_variants) - {"kk"} - {"et"}
@@ -2034,7 +1973,7 @@ class PatternMatcher:
             Annotation(
                 start=start,
                 end=end,
-                code="P_FORNOFN",
+                code="P_PRONOUN_WRONG_GENDER",
                 text=text,
                 detail=detail,
                 original=fn.tidy_text,
@@ -2042,7 +1981,8 @@ class PatternMatcher:
             )
         )
 
-    def toluord(self, match: SimpleTree) -> None:
+    # Gender neutral
+    def numeral_wrong_gender(self, match: SimpleTree) -> None:
         to = match.first_match("to")
         if to is None:
             return
@@ -2052,7 +1992,7 @@ class PatternMatcher:
         suggest = self.get_wordform(to_text, to.lemma, to.cat, variants)
         start, end = to.span
         text = f"Til að gera setninguna kynhlutlausa væri betra að hafa '{suggest}' í stað '{to.tidy_text.lower()}'"
-        detail = (f"Hvorugkynsfornafnið '{suggest}' er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynsfornafnið '{to.tidy_text.lower()}' getur verið notað til að vísa einungis til karlmanna.")
+        detail = (f"Hvorugkynstöluorðið '{suggest}' er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynstöluorðið '{to.tidy_text.lower()}' getur verið notað til að vísa einungis til karlmanna.")
         if suggest == to.tidy_text.lower():
             # No need to annotate, no changes were made
             return
@@ -2060,7 +2000,7 @@ class PatternMatcher:
             Annotation(
                 start=start,
                 end=end,
-                code="P_TOLUORD",
+                code="P_NUMERAL_WRONG_GENDER",
                 text=text,
                 detail=detail,
                 original=to.tidy_text,
@@ -2068,18 +2008,19 @@ class PatternMatcher:
             )
         )
 
-    def serstaed_lysingarord(self, match: SimpleTree) -> None:
+    # Gender neutral
+    def adjective_wrong_gender(self, match: SimpleTree) -> None:
         lo = match.first_match("lo")
         if lo is None:
             return
-        variants = set(lo.all_variants)
         variants = set(lo.all_variants) - {"kk"}
         variants.add("hk")
         lo_text = lo.text.lower()
         suggest = self.get_wordform(lo_text, lo.lemma, lo.cat, variants)
         start, end = lo.span
-        text = f"Til að gera setninguna kynhlutlausa væri betra að hafa '{suggest}' í stað '{lo.tidy_text.lower()}'"
-        detail = (f"Hvorugkynslýsingarorðið '{suggest}' er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynslýsingarorðið '{lo.tidy_text.lower()}' getur verið notað til að vísa einungis til karlmanna.")
+        #text = f"Til að gera setninguna kynhlutlausa væri betra að hafa '{suggest}' í stað '{lo.tidy_text.lower()}'"
+        text = "Til að hafa setninguna kynhlutlausa væri betra að hafa lýsingarorðið í hvorugkyni"
+        detail = (f"Hvorugkynslýsingarorðið er kynhlutlaust, þ.e. það vísar til einstaklinga af hvaða kyni sem er, en karlkynslýsingarorðið '{lo.tidy_text.lower()}' getur verið notað til að vísa einungis til karlmanna.")
         if suggest == lo.tidy_text.lower():
             # No need to annotate, no changes were made
             return
@@ -2087,7 +2028,7 @@ class PatternMatcher:
             Annotation(
                 start=start,
                 end=end,
-                code="P_SERSTAED_LYSINGARORD",
+                code="P_ADJECTIVE_WRONG_GENDER",
                 text=text,
                 detail=detail,
                 original=lo.tidy_text,
@@ -3317,26 +3258,17 @@ class PatternMatcher:
             )
         )
 
-        # KYNHLUTLAUST MÁL
+        # Gender neutral
         cls.add_pattern(
             (
                 "sá",  # Trigger lemma for this pattern
                 "(fn_nf_kk | fn_þf_kk)",
-                lambda self, match: self.wrong_demonstrative_pronoun(match),
+                lambda self, match: self.wrong_gender_demonstrative_pronoun(match),
                 None,
             )
         )
 
-        # KYNHLUTLAUST MÁL
-        cls.add_pattern(
-            (
-                "maður",    # Trigger lemma for this pattern
-                "no",
-                lambda self, match: self.noun_madur(match),
-                None,
-            )
-        )
-
+        # Gender neutral
         cls.add_pattern(
             (
                 frozenset(JobTitles.get_all_titles()),
@@ -3346,38 +3278,42 @@ class PatternMatcher:
             )
         )
 
+        # Gender neutral
         cls.add_pattern(
             (
-                frozenset(("allur", "báðir", "enginn", "einhver", "fáeinir", "hver", "hvor", "neinn", "")),
+                frozenset(("allur", "annar", "báðir", "enginn", "einhver", "fáeinir", "hver", "hvor", "hvorugur", "neinn", "nokkur", "sumur")),
                 "NP > { fn lo } ",
-                lambda self, match: self.fornofn(match),
+                lambda self, match: self.pronoun_wrong_gender(match),
                 None
             )
         )
 
+        # Gender neutral
         cls.add_pattern(
             (
-                frozenset(("allur", "báðir", "enginn", "einhver", "fáeinir", "hver", "hvor", "neinn", "")),
+                frozenset(("allur", "annar", "báðir", "enginn", "einhver", "fáeinir", "hver", "hvor", "hvorugur", "neinn", "nokkur", "sumur")),
                 "IP > { NP-SUBJ >> [ fn $ ] VP >> { so } }",
-                lambda self, match: self.fornofn(match),
+                lambda self, match: self.pronoun_wrong_gender(match),
                 None
             )
         )
 
+        # Gender neutral
         cls.add_pattern(
             (
                 frozenset(("einn", "tveir", "þrír", "fjórir")),
                 "IP > { NP-SUBJ >> [ to $ ] VP >> { so } }",
-                lambda self, match: self.toluord(match),
+                lambda self, match: self.numeral_wrong_gender(match),
                 None
             )
         )
 
+        # Gender neutral
         cls.add_pattern(
             (
-                frozenset(("fatlaður", "rauður", "blár", "ljótur")),
+                frozenset(("atvinnulaus", "aðskilinn", "barnshafandi", "blautur", "blindur", "breiður", "brúnn", "dapur", "dauður", "dauðvona", "erlendur", "feitur", "frjáls", "frægur", "fullorðinn", "gamall", "gift", "grunlaus", "fatlaður", "gulur", "rauður", "grænn", "blár", "svartur", "hvítur", "latur", "látinn", "fár", "margur", "ungur", "munaðarlaus", "innfæddur", "íhaldssamur", "trúaður", "ölvaður", "þunglyndur")),
                 "IP > { NP-SUBJ >> [ lo $ ] VP >> { so } }",
-                lambda self, match: self.serstaed_lysingarord(match),
+                lambda self, match: self.adjective_wrong_gender(match),
                 None
             )
         )
