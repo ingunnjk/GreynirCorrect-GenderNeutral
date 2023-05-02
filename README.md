@@ -33,7 +33,7 @@ cd Yfirlestur
 pip install -r requirements.txt
 python main.py
 ```
-og að lokum opna slóðina http://localhost:5002/.
+og að lokum opna slóðina http://localhost:5002/. Þá er hægt að nota kerfið eins og sést á myndinni hér að neðan:
 
 <img src="GreynirCorrect-GenderNeutral.png" width="720" height="536"
   alt="Example_image" style="margin-top: 18px; margin-bottom: 6px">
